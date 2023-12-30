@@ -1,0 +1,616 @@
+C51 COMPILER V9.60.0.0   CONVERTED                                                         12/10/2023 05:30:04 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE CONVERTED
+OBJECT MODULE PLACED IN .\src\converted.OBJ
+COMPILER INVOKED BY: c:\SiliconLabs\SimplicityStudio\v4\developer\toolchains\keil_8051\9.60\BIN\C51.exe D:\Pak\WORKSHOP\
+                    -Germany_work\Messverst_rker_V1.07_RS485\MessverstÄrker_V1.07_RS485\src\converted.c OMF2 SMALL DEBUG OBJECTEXTEND ROM(LAR
+                    -GE) WARNINGLEVEL(2) FLOATFUZZY(3) OPTIMIZE(8,SPEED) INTVECTOR(0X0000) INTPROMOTE INCDIR(C:/SiliconLabs/SimplicityStudio/
+                    -v4/developer/sdks/8051/v4.1.7//Device/shared/si8051Base;C:/SiliconLabs/SimplicityStudio/v4/developer/sdks/8051/v4.1.7//D
+                    -evice/EFM8BB3/inc) PRINT(.\src\converted.lst) COND PAGEWIDTH(120) PAGELENGTH(65) OBJECT(.\src\converted.OBJ)
+
+line level    source
+
+   1          #include <SI_EFM8BB3_Defs.inc>
+*** ERROR C141 IN LINE 1 OF C:/SiliconLabs/SimplicityStudio/v4/developer/sdks/8051/v4.1.7//Device/EFM8BB3/inc\SI_EFM8BB3
+             -_Defs.inc: syntax error near ';', expected 'hdata'
+*** ERROR C129 IN LINE 2 OF C:/SiliconLabs/SimplicityStudio/v4/developer/sdks/8051/v4.1.7//Device/EFM8BB3/inc\SI_EFM8BB3
+             -_Defs.inc: missing ';' before '2014'
+   2          
+   3          #include <SI_EFM8BB3_Defs.inc>
+   4          
+   5          // Port Definitions
+   6          #define ADC_OV         P0_1
+   7          #define ADC_UV         P0_2
+   8          #define AUTOZ_IN       P0_3
+   9          #define UART_TX        P0_4
+  10          #define UART_RX        P0_5
+  11          #define SPI_CLK        P0_6
+  12          #define SPI_MISO       P0_7
+  13          
+  14          #define SPI_MOSI       P1_0
+  15          #define S3             P1_1
+  16          #define S2             P1_2
+  17          #define S1             P1_3
+  18          #define ENCODER_A      P1_4
+  19          #define ENCODER_B      P1_5
+  20          #define ENCODER_MID    P1_6
+  21          #define E              P1_7
+  22          
+  23          #define CS_DISPLAY     P2_0
+  24          #define RST_DISPLAY    P2_1
+  25          #define ADC_LP_FILTER  P2_2
+  26          #define DE_RE          P2_3
+  27          #define LED_GREEN      P2_4
+  28          #define LED_RED        P2_5
+  29          #define LED_WHITE      P2_6
+  30          
+  31          #define VREF           P3_0
+  32          #define DAC_OUT        P3_1
+  33          #define OVERLOAD       P3_2
+  34          
+  35          // Bit Definitions
+  36          __sbit __at (0x20) ERROR;
+  37          __sbit __at (0x21) Auto_zero_on;
+  38          __sbit __at (0x22) ADC_Pos;
+  39          __sbit __at (0x23) ADC_Neg;
+  40          __sbit __at (0x24) ADC_warten;
+  41          __sbit __at (0x25) GAIN_SET;
+  42          __sbit __at (0x26) OVERRANGE_P;
+  43          __sbit __at (0x27) OVERRANGE_N;
+  44          __sbit __at (0x28) DAC0_max;
+  45          __sbit __at (0x29) DAC0_min;
+  46          __sbit __at (0x2A) BIT_OVERVOLT;
+  47          __sbit __at (0x2B) BIT_OVERRANGE;
+  48          __sbit __at (0x2C) BIT_AUTOZ;
+C51 COMPILER V9.60.0.0   CONVERTED                                                         12/10/2023 05:30:04 PAGE 2   
+
+  49          __sbit __at (0x2D) encoder_down;
+  50          __sbit __at (0x2E) encoder_up;
+  51          __sbit __at (0x2F) SPI_Display;
+  52          __sbit __at (0x30) wait_for_SPI;
+  53          __sbit __at (0x31) SONDERMENU;
+  54          __sbit __at (0x32) display_clr;
+  55          __sbit __at (0x33) Init_Display_OK;
+  56          __sbit __at (0x34) display_clear;
+  57          __sbit __at (0x35) overheat;
+  58          __sbit __at (0x36) bootscreen_ok;
+  59          __sbit __at (0x37) write_ok;
+  60          __sbit __at (0x38) write_OH;
+  61          __sbit __at (0x39) output_on;
+  62          __sbit __at (0x3A) output_off;
+  63          __sbit __at (0x3B) erste_zeile;
+  64          __sbit __at (0x3C) OutputVoltage;
+  65          __sbit __at (0x3D) set_R3;
+  66          __sbit __at (0x3E) R3_Overheat;
+  67          __sbit __at (0x3F) write_MENU;
+  68          __sbit __at (0x40) R3_SONDERMENU;
+  69          __sbit __at (0x41) T1_blink;
+  70          __sbit __at (0x42) zweite_zeile;
+  71          __sbit __at (0x43) dritte_zeile;
+  72          __sbit __at (0x44) BIT_GAIN_500;
+  73          __sbit __at (0x45) BIT_GAIN_1K;
+  74          __sbit __at (0x46) BIT_GAIN_2K;
+  75          __sbit __at (0x47) BIT_GAIN_5K;
+  76          __sbit __at (0x48) BIT_GAIN_10K;
+  77          __sbit __at (0x49) BIT_GAIN_20K;
+  78          __sbit __at (0x4A) BIT_GAIN_40K;
+  79          __sbit __at (0x4B) BIT_GAIN_60K;
+  80          __sbit __at (0x4C) LCD_fertig;
+  81          __sbit __at (0x4D) SET_GAIN;
+  82          __sbit __at (0x4E) SET_AUTOZERO;
+  83          __sbit __at (0x4F) OVERVOLT_P;
+  84          __sbit __at (0x50) OVERVOLT_N;
+  85          __sbit __at (0x51) ADC_WC_SET;
+  86          __sbit __at (0x52) BLINK_LCD;
+  87          __sbit __at (0x53) OUTPUT_POSITIV;
+  88          __sbit __at (0x54) OUTPUT_NEGATIV;
+  89          __sbit __at (0x55) bootscreen_loading;
+  90          __sbit __at (0x56) stufe1;
+  91          __sbit __at (0x57) stufe2;
+  92          __sbit __at (0x58) stufe3;
+  93          __sbit __at (0x59) stufe4;
+  94          __sbit __at (0x5A) LP_1000HZ;
+  95          __sbit __at (0x5B) LP_300HZ;
+  96          __sbit __at (0x5C) LP_50HZ;
+  97          __sbit __at (0x5D) LP_OFF;
+  98          __sbit __at (0x5E) KALIBRIEREN;
+  99          __sbit __at (0x5F) KALIB_end;
+ 100          __sbit __at (0x60) standby;
+ 101          __sbit __at (0x61) press_screen_ok;
+ 102          __sbit __at (0x62) settings_saved;
+ 103          __sbit __at (0x63) selbsttest;
+ 104          __sbit __at (0x64) option_menu;
+ 105          __sbit __at (0x65) LOCKED;
+ 106          __sbit __at (0x66) encoder_middle;
+ 107          __sbit __at (0x67) Mittelwert_high;
+ 108          __sbit __at (0x68) ADC_messen;
+ 109          __sbit __at (0x69) RS485_mode;
+ 110          __sbit __at (0x6A) RS485_ID;
+ 111          __sbit __at (0x6B) PAGE2;
+C51 COMPILER V9.60.0.0   CONVERTED                                                         12/10/2023 05:30:04 PAGE 3   
+
+ 112          __sbit __at (0x6C) RS485_DATA;
+ 113          __sbit __at (0x6D) UART_SENDEN;
+ 114          
+ 115          // Interrupt Service Routine for UART0
+ 116          void UART0_ISR(void) __interrupt (4) {
+ 117              ACC = SBUF0;
+ 118              switch (RS485_DATA) {
+ 119                  case 0x00: P0 = ACC; break;
+ 120                  case 0x01: P1 = ACC; break;
+ 121                  case 0x02: P2 = ACC; break;
+ 122                  case 0x03: P3 = ACC; break;
+ 123                  case 0x04: ADC_Pos = ACC; break;
+ 124                  case 0x05: ADC_Neg = ACC; break;
+ 125                  // ... Repeat for other cases
+ 126              }
+ 127              SCON0_RI = 0;  // Clear the receive interrupt flag
+ 128          }
+ 129          
+ 130          // Timer0 ISR
+ 131          void Timer0_ISR(void) __interrupt (1) {
+ 132              // Timer0 interrupt routine (if needed)
+ 133          }
+ 134          
+ 135          // Timer2 ISR
+ 136          void Timer2_ISR(void) __interrupt (5) {
+ 137              ACC = PSW;
+ 138              PSW = ACC;
+ 139          
+ 140              TMR2CN0 = 0x04;
+ 141          
+ 142              if (KALIBRIEREN) {
+ 143                  if (--BIT_GAIN_60K == 0) {
+ 144                      BIT_GAIN_60K = 14;
+ 145                      SETB(ADC_messen);
+ 146                  }
+ 147              }
+ 148          
+ 149              ACC = PSW;
+ 150              PSW = ACC;
+ 151          }
+ 152          
+ 153          // Timer3 ISR
+ 154          void Timer3_ISR(void) __interrupt (14) {
+ 155              ACC = PSW;
+ 156              PSW = ACC;
+ 157          
+ 158              TMR3H = 0x00;
+ 159              TMR3L = 0x00;
+ 160              TMR3CN0 = 0x04;
+ 161          
+ 162              if (!BOOTSCREEN_OK) {
+ 163                  if (GAIN_SET) {
+ 164                      if (--T1_BLINK == 0) {
+ 165                          T1_BLINK = 0x90;
+ 166                          A = 0x1F;
+ 167                          R4 = 0x1F;
+ 168                          CLR(GAIN_SET);
+ 169                          SETB(SET_GAIN);
+ 170                          P0MASK = 0x08;
+ 171                      }
+ 172                  }
+ 173          
+ 174                  if (!AUTO_ZERO_ON) {
+C51 COMPILER V9.60.0.0   CONVERTED                                                         12/10/2023 05:30:04 PAGE 4   
+
+ 175                      if (BIT_OVERRANGE) {
+ 176                          if (!BIT_OVERVOLT) {
+ 177                              if (--BIT_08 == 0) {
+ 178                                  BIT_08 = 0x20;
+ 179                                  CPL(BLINK_LCD);
+ 180                              }
+ 181                          }
+ 182          
+ 183                          if (BLINK_LCD) {
+ 184                              CLR(LED_GREEN);
+ 185                              SETB(LED_RED);
+ 186                              CLR(LED_WHITE);
+ 187                          } else {
+ 188                              SETB(LED_GREEN);
+ 189                              CLR(LED_RED);
+ 190                              SETB(LED_WHITE);
+ 191                          }
+ 192                      }
+ 193                  }
+ 194              }
+ 195          
+ 196              ACC = PSW;
+ 197              PSW = ACC;
+ 198          }
+ 199          
+ 200          // SPI Interrupt Service Routine
+ 201          void SPI_ISR(void) __interrupt (6) {
+ 202              ACC = PSW;
+ 203              PSW = ACC;
+ 204          
+ 205              SPI0CN0_SPIF = 0;
+ 206              SFRPAGE = 0x20;
+ 207              SPI0FCN0 = 0x44;
+ 208              SFRPAGE = 0x00;
+ 209          
+ 210              if (!SPI_DISPLAY) {
+ 211                  CLR(CS_DISPLAY);
+ 212          
+ 213                  TH0 = 0xFF;
+ 214                  TL0 = 0xFE;
+ 215                  CLR(TCON_TF0);
+ 216          
+ 217                  if (!TCON_TF0) {
+ 218                      if (!ENCODER_MID) {
+ 219                          if (ENCODER_B) {
+ 220                              if (ENCODER_A) {
+ 221                                  SETB(ENCODER_DOWN);
+ 222                                  CLR(ENCODER_UP);
+ 223                                  CLR(ENCODER_MIDDLE);
+ 224                                  P0MASK = 0x00;
+ 225                                  BIT_31 = 0x90;
+ 226                                  BIT_47 = 0x01;
+ 227                                  return;
+ 228                              }
+ 229                          }
+ 230                      } else {
+ 231                          if (!OPTION_MENU) {
+ 232                              SETB(SET_GAIN);
+ 233                              BIT_47 = 0x70;
+ 234                              return;
+ 235                          }
+ 236                          SETB(ENCODER_MIDDLE);
+ 237                      }
+C51 COMPILER V9.60.0.0   CONVERTED                                                         12/10/2023 05:30:04 PAGE 5   
+
+ 238          
+ 239                      TH0 = 0x00;
+ 240                      TL0 = 0x00;
+ 241                      CLR(TCON_TF0);
+ 242          
+ 243                      DJNZ(BIT_47);
+ 244                      BIT_47 = 0xFF;
+ 245                      BIT_48 = 0x0F;
+ 246                      P1MAT = 0xFF;
+ 247                      return;
+ 248                  }
+ 249          
+ 250                  DJNZ(BIT_47);
+ 251                  BIT_47 = 0xFF;
+ 252                  BIT_48 = 0x0F;
+ 253                  return;
+ 254              }
+ 255          
+ 256              SETB(CS_DISPLAY);
+ 257              CLR(SPI_DISPLAY);
+ 258              SETB(WAIT_FOR_SPI);
+ 259          
+ 260              ACC = PSW;
+ 261              PSW = ACC;
+ 262          }
+ 263          
+ 264          // Portmatch ISR
+ 265          void Portmatch_ISR(void) __interrupt (18) {
+ 266              ACC = PSW;
+ 267              PSW = ACC;
+ 268          
+ 269              P0MAT = 0xFF;
+ 270          
+ 271              if (P1MAT != 0xFF) {
+ 272                  if (!BOOTSCREEN_OK) {
+ 273                      if (!AUTO_ZERO_ON) {
+ 274                          if (!LOCKED && !RS485_MODE) {
+ 275                              SETB(SET_AUTOZERO);
+ 276                              P0MAT = 0xF7;
+ 277                              return;
+ 278                          }
+ 279                      }
+ 280                  }
+ 281              }
+ 282          
+ 283              if (AUTO_ZERO_ON) {
+ 284                  if (!ENCODER_MID) {
+ 285                      if (ENCODER_B) {
+ 286                          if (ENCODER_A) {
+ 287                              SETB(ENCODER_DOWN);
+ 288                              CLR(ENCODER_UP);
+ 289                              CLR(ENCODER_MIDDLE);
+ 290                              P0MASK = 0x00;
+ 291                              BIT_31 = 0x90;
+ 292                              BIT_47 = 0x01;
+ 293                              return;
+ 294                          }
+ 295                      }
+ 296                  } else {
+ 297                      if (ENCODER_A) {
+ 298                          if (ENCODER_B) {
+ 299                              SETB(ENCODER_UP);
+ 300                              CLR(ENCODER_DOWN);
+C51 COMPILER V9.60.0.0   CONVERTED                                                         12/10/2023 05:30:04 PAGE 6   
+
+ 301                              CLR(ENCODER_MIDDLE);
+ 302                              P0MASK = 0x00;
+ 303                              BIT_31 = 0x90;
+ 304                              BIT_47 = 0x01;
+ 305                              return;
+ 306                          }
+ 307                      }
+ 308                  }
+ 309          
+ 310                  if (ENCODER_MIDDLE) {
+ 311                      SETB(ENCODER_MIDDLE);
+ 312                  }
+ 313          
+ 314                  TH0 = 0x00;
+ 315                  TL0 = 0x00;
+ 316                  CLR(TCON_TF0);
+ 317          
+ 318                  DJNZ(BIT_47);
+ 319                  BIT_47 = 0xFF;
+ 320                  BIT_48 = 0x0F;
+ 321                  P1MAT = 0xBF;
+ 322          
+ 323                  TH0 = 0x00;
+ 324                  TL0 = 0x00;
+ 325                  CLR(TCON_TF0);
+ 326          
+ 327                  DJNZ(BIT_47);
+ 328                  BIT_47 = 0xFF;
+ 329                  BIT_48 = 0x0F;
+ 330                  INIT_DISPLAY_OK = 0x00;
+ 331                  P1MAT = 0xBF;
+ 332                  BIT_47 = 0x05;
+ 333          
+ 334                  TMOD = 0x21;
+ 335          
+ 336                  while (BIT_47 != 0) {
+ 337                      TH0 = 0x00;
+ 338                      TL0 = 0x00;
+ 339                      CLR(TCON_TF0);
+ 340          
+ 341                      DJNZ(BIT_47);
+ 342                      BIT_47 = 0xFF;
+ 343                  }
+ 344          
+ 345                  TMOD = 0x22;
+ 346              }
+ 347          
+ 348              ACC = PSW;
+ 349              PSW = ACC;
+ 350          }
+ 351          
+ 352          // ADC Window ISR
+ 353          void ADC_Window_ISR(void) __interrupt (15) {
+ 354              ACC = PSW;
+ 355              PSW = ACC;
+ 356          
+ 357              SETB(ADC_WC_SET);
+ 358              CLR(ADC0CN0_ADWINT);
+ 359          
+ 360              ACC = PSW;
+ 361              PSW = ACC;
+ 362          }
+ 363          
+C51 COMPILER V9.60.0.0   CONVERTED                                                         12/10/2023 05:30:04 PAGE 7   
+
+ 364          // ADC ISR
+ 365          void ADC_ISR(void) __interrupt (10) {
+ 366              ACC = PSW;
+ 367              PSW = ACC;
+ 368          
+ 369              CLR(ADC0CN0_ADINT);
+ 370              R1 = ADC0H;
+ 371              R2 = ADC0L;
+ 372          
+ 373              SETB(ADC_WARTEN);
+ 374          
+ 375              ACC = PSW;
+ 376              PSW = ACC;
+ 377          }
+ 378          
+ 379          
+ 380          void Init_Device(void) {
+ 381              EA = 0; // Disable global interrupts
+ 382          
+ 383              WDTCN = 0xDE; // Disable the watchdog timer
+ 384              WDTCN = 0xAD;
+ 385          
+ 386              EA = 1; // Enable global interrupts
+ 387          
+ 388              SP = 0x60;
+ 389          
+ 390              CLKSEL = 0x00;
+ 391              EA = 1;  // Enable global interrupts
+ 392              TMOD = 0x20;  // Set Timer1 in 8-bit auto-reload mode for serial communication
+ 393              SCON0 = 0x50;  // Serial mode 1, 8-bit UART, enable reception
+ 394          
+ 395          
+ 396              XBR0 = 0x03;
+ 397              XBR1 = 0x00;
+ 398              XBR2 = 0xC0;
+ 399          
+ 400              P0SKIP = 0x0F;
+ 401              P0MDIN = 0xF9;
+ 402              P0MDOUT = 0x51;
+ 403          
+ 404              P1MDIN = 0xFF;
+ 405              P1MDOUT = 0x8F;
+ 406              P1MASK = 0x70;
+ 407          
+ 408              SFRPAGE = 0x20;
+ 409              P2MDIN = 0xFB;
+ 410              P2MDOUT = 0x7B;
+ 411              SFRPAGE = 0x00;
+ 412          
+ 413              SFRPAGE = 0x20;
+ 414              P3MDIN = 0xFF;
+ 415              P3MDOUT = 0x0C;
+ 416              SFRPAGE = 0x00;
+ 417          
+ 418              REF0CN = 0x40;
+ 419              SFRPAGE = 0x30;
+ 420              DAC0CF0 = 0x80;
+ 421              DAC1CF0 = 0x80;
+ 422              DAC0CF1 = 0x01;
+ 423              DAC1CF1 = 0x01;
+ 424              DAC0L = 0x00;
+ 425              DAC0H = 0x08;
+ 426              DAC1L = 0x00;
+C51 COMPILER V9.60.0.0   CONVERTED                                                         12/10/2023 05:30:04 PAGE 8   
+
+ 427              DAC1H = 0x08;
+ 428              DACGCF0 = 0x88;
+ 429              SFRPAGE = 0x00;
+ 430          
+ 431              SCON0 = 0x70;
+ 432          
+ 433              CKCON0 = 0x02;
+ 434              TCON = 0xD2;
+ 435              TMOD = 0x22;
+ 436              TH1 = 0xE4;
+ 437          
+ 438              TMR2CN0 = 0x04;
+ 439              TMR2RLH = 0x00;
+ 440              TMR2RLL = 0x00;
+ 441          
+ 442              TMR3CN0 = 0x04;
+ 443          
+ 444              IE = 0xE0;
+ 445          
+ 446              EIE1 = 0x0A;
+ 447          
+ 448              SPI0CFG = 0x47;
+ 449              SPI0CKR = 0x01;
+ 450              SPI0CN0 = 0x03;
+ 451              SFRPAGE = 0x20;
+ 452              SPI0FCN0 = 0x00;
+ 453              SFRPAGE = 0x00;
+ 454          
+ 455              ADC0CN0 = 0xA0;
+ 456              ADC0CF2 = 0x1F;
+ 457              ADC0CN0_ADWINT = 0;
+ 458              ADC0CN0_ADINT = 0;
+ 459              REF0CN = 0x80;
+ 460          
+ 461              R0 = 0x01;
+ 462              R1 = 0x00;
+ 463              R2 = 0x00;
+ 464              R3 = 0x00;
+ 465              R4 = 0x00;
+ 466              R5 = 0x08;
+ 467              R6 = 0x00;
+ 468              R7 = 0xFF;
+ 469              BIT_08 = 0x20;
+ 470          
+ 471              BIT_0A = 0x00;
+ 472              BIT_0B = 0x00;
+ 473              BIT_0C = 0x00;
+ 474              BIT_0D = 0x00;
+ 475              BIT_0E = 0x00;
+ 476              BIT_0F = 0x2D;
+ 477          
+ 478              BIT_10 = 0x00;
+ 479              BIT_11 = 0x00;
+ 480              BIT_12 = 0x00;
+ 481              BIT_13 = 0x00;
+ 482          
+ 483              BIT_15 = 0x00;
+ 484              BIT_16 = 0x00;
+ 485              BIT_17 = 0x00;
+ 486              BIT_18 = 0x00;
+ 487              BIT_19 = 0x00;
+ 488              BIT_1A = 0x00;
+ 489          
+C51 COMPILER V9.60.0.0   CONVERTED                                                         12/10/2023 05:30:04 PAGE 9   
+
+ 490              BIT_1D = 0x1D;
+ 491          
+ 492              BIT_31 = 0x90;
+ 493              BIT_32 = 0x00;
+ 494              BIT_33 = 0x00;
+ 495              BIT_34 = 0x00;
+ 496              BIT_35 = 0x00;
+ 497              BIT_36 = 0x00;
+ 498              BIT_37 = 0x00;
+ 499              BIT_38 = 0x00;
+ 500              BIT_39 = 0x00;
+ 501              BIT_3A = 0x00;
+ 502              BIT_3B = 0x00;
+ 503              BIT_3C = 0x00;
+ 504              BIT_3D = 0x00;
+ 505              BIT_3E = 0x00;
+ 506              BIT_3F = 0x00;
+ 507              BIT_40 = 0x00;
+ 508              BIT_41 = 0x00;
+ 509          
+ 510              BIT_42 = 0x00;
+ 511              BIT_43 = 0x00;
+ 512              BIT_44 = 0x00;
+ 513              BIT_45 = 0x00;
+ 514              BIT_46 = 0x00;
+ 515              BIT_47 = 0x00;
+ 516              BIT_48 = 0x00;
+ 517              BIT_49 = 0x00;
+ 518              BIT_4A = 0x01;
+ 519              BIT_4B = 0x1D;
+ 520              BIT_4C = 0x00;
+ 521          
+ 522              BIT_50 = 0x00;
+ 523              BIT_51 = 0x00;
+ 524              BIT_52 = 0x00;
+ 525              BIT_53 = 0x00;
+ 526              BIT_54 = 0x00;
+ 527              BIT_55 = 0x00;
+ 528              BIT_56 = 0x00;
+ 529              BIT_57 = 0x00;
+ 530              BIT_58 = 0x00;
+ 531              BIT_59 = 0x00;
+ 532              BIT_5A = 0x00;
+ 533              BIT_5B = 0x00;
+ 534              BIT_5C = 0x00;
+ 535              BIT_5D = 0x00;
+ 536              BIT_5E = 0x00;
+ 537              BIT_5F = 0x00;
+ 538          
+ 539              BIT_6A = 0xFF;
+ 540              BIT_6B = 0x03;
+ 541              BIT_6C = 0x00;
+ 542              BIT_6D = 0x00;
+ 543              BIT_6E = 0x00;
+ 544              BIT_6F = 0x00;
+ 545              BIT_70 = 0x00;
+ 546              BIT_71 = 0x00;
+ 547              BIT_72 = 0x00;
+ 548              BIT_73 = 0x00;
+ 549              BIT_74 = 0x00;
+ 550              BIT_75 = 0x00;
+ 551              BIT_76 = 0x00;
+ 552              BIT_77 = 0x00;
+C51 COMPILER V9.60.0.0   CONVERTED                                                         12/10/2023 05:30:04 PAGE 10  
+
+ 553              BIT_78 = 0x00;
+ 554              BIT_79 = 0x00;
+ 555              BIT_7A = 0x00;
+ 556          
+ 557              CLR(ERROR);
+ 558          
+ 559              CLR(S1);
+ 560              CLR(S2);
+ 561              CLR(S3);
+ 562          }
+ 563          
+ 564          
+ 565          
+ 566          
+ 567          
+ 568          
+ 569          
+ 570          
+ 571          void main(void) {
+ 572              EA = 1;  // Enable global interrupts
+ 573              TMOD = 0x20;  // Set Timer1 in 8-bit auto-reload mode for serial communication
+ 574              SCON0 = 0x50;  // Serial mode 1, 8-bit UART, enable reception
+ 575          
+ 576              while (1) {
+ 577                  // Main program loop
+ 578              }
+ 579          }
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  2 ERROR(S)
