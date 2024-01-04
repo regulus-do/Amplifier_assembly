@@ -20,24 +20,24 @@ RM := rm -rf
 # Add inputs and outputs from these tool invocations to the build variables 
 
 # All Target
-all: MessverstÄrker_V1.07_RS485.omf
+all: Amplifier_assembly.omf
 
 # Tool invocations
-MessverstÄrker_V1.07_RS485.omf: echo_path $(OBJS)
+Amplifier_assembly.omf: echo_path $(OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: Keil 8051 Linker'
-	LX51 "@MessverstÄrker_V1.07_RS485.lnp" || $(RC)
+	LX51 "@Amplifier_assembly.lnp" || $(RC)
 	@echo 'Finished building target: $@'
 
 # Change from all upper case to the expected case
-	@-mv "MESSVERSTÄRKER_V1.07_RS485.OMF.CRBUILD" "$@"
+	@-mv "AMPLIFIER_ASSEMBLY.OMF.CRBUILD" "$@"
 
-# Generate hex file: MessverstÄrker_V1.07_RS485.hex
-	@Ohx51 "MessverstÄrker_V1.07_RS485.omf" "HEXFILE (MessverstÄrker_V1.07_RS485.hex)" "H386" 2>&1 >/dev/null
+# Generate hex file: Amplifier_assembly.hex
+	@Ohx51 "Amplifier_assembly.omf" "HEXFILE (Amplifier_assembly.hex)" "H386" 2>&1 >/dev/null
 
 # Other Targets
 clean:
-	-$(RM) $(EXECUTABLES)$(OBJS) MessverstÄrker_V1.07_RS485.omf
+	-$(RM) $(EXECUTABLES)$(OBJS) Amplifier_assembly.omf
 	-@echo ' '
 
 .PHONY: all clean dependents
