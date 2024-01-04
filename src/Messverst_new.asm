@@ -85,8 +85,8 @@ BIT_GAIN_1K:	DBIT	1
 BIT_GAIN_2K:	DBIT	1
 BIT_GAIN_5K:	DBIT	1
 BIT_GAIN_10K:	DBIT	1
-BIT_GAIN_20K:	DBIT	1
-BIT_GAIN_40K:	DBIT	1
+BIT_GAIN_25K:	DBIT	1
+BIT_GAIN_50K:	DBIT	1
 BIT_GAIN_60K:	DBIT	1
 LCD_fertig:		DBIT	1
 SET_GAIN:		DBIT	1
@@ -922,7 +922,7 @@ Init:
 			mov		R7, #06h
 start0:		jb		TCON_TF0, start1
 			jmp		start0
-start1:		clr		TCON_TF0
+start1:		clr 		TCON_TF0
 			djnz	R7, start0
 			clr		Auto_zero_on
 			clr		ADC_Pos
@@ -943,8 +943,8 @@ start1:		clr		TCON_TF0
 			clr		BIT_GAIN_2K
 			clr		BIT_GAIN_5K
 			clr		BIT_GAIN_10K
-			clr		BIT_GAIN_20K
-			clr		BIT_GAIN_40K
+			clr		BIT_GAIN_25K
+			clr		BIT_GAIN_50K
 			clr		BIT_GAIN_60K
 			clr		press_screen_ok
 			clr		LED_GREEN
@@ -1192,8 +1192,8 @@ start_05:	mov		P0MASK, #08h
 			clr		BIT_GAIN_2K
 			clr		BIT_GAIN_5K
 			clr		BIT_GAIN_10K
-			clr		BIT_GAIN_20K
-			clr		BIT_GAIN_40K
+			clr		BIT_GAIN_25K
+			clr		BIT_GAIN_50K
 			clr		BIT_GAIN_60K
 			mov		R4,	#00h
 			mov		0x1F, R4
@@ -1204,8 +1204,8 @@ start_06:	cjne	A, #2d, start_07
 			clr		BIT_GAIN_2K
 			clr		BIT_GAIN_5K
 			clr		BIT_GAIN_10K
-			clr		BIT_GAIN_20K
-			clr		BIT_GAIN_40K
+			clr		BIT_GAIN_25K
+			clr		BIT_GAIN_50K
 			clr		BIT_GAIN_60K
 			mov		R4,	#01h
 			mov		0x1F, R4
@@ -1216,8 +1216,8 @@ start_07:	cjne	A, #3d, start_08
 			setb	BIT_GAIN_2K
 			clr		BIT_GAIN_5K
 			clr		BIT_GAIN_10K
-			clr		BIT_GAIN_20K
-			clr		BIT_GAIN_40K
+			clr		BIT_GAIN_25K
+			clr		BIT_GAIN_50K
 			clr		BIT_GAIN_60K
 			mov		R4,	#02h
 			mov		0x1F, R4
@@ -1228,8 +1228,8 @@ start_08:	cjne	A, #4d, start_09
 			clr		BIT_GAIN_2K
 			setb	BIT_GAIN_5K
 			clr		BIT_GAIN_10K
-			clr		BIT_GAIN_20K
-			clr		BIT_GAIN_40K
+			clr		BIT_GAIN_25K
+			clr		BIT_GAIN_50K
 			clr		BIT_GAIN_60K
 			mov		R4,	#03h
 			mov		0x1F, R4
@@ -1240,8 +1240,8 @@ start_09:	cjne	A, #5d, start_10
 			clr		BIT_GAIN_2K
 			clr		BIT_GAIN_5K
 			setb	BIT_GAIN_10K
-			clr		BIT_GAIN_20K
-			clr		BIT_GAIN_40K
+			clr		BIT_GAIN_25K
+			clr		BIT_GAIN_50K
 			clr		BIT_GAIN_60K
 			mov		R4,	#04h
 			mov		0x1F, R4
@@ -1252,8 +1252,8 @@ start_10:	cjne	A, #6d, start_11
 			clr		BIT_GAIN_2K
 			clr		BIT_GAIN_5K
 			clr		BIT_GAIN_10K
-			setb	BIT_GAIN_20K
-			clr		BIT_GAIN_40K
+			setb	BIT_GAIN_25K
+			clr		BIT_GAIN_50K
 			clr		BIT_GAIN_60K
 			mov		R4,	#05h
 			mov		0x1F, R4
@@ -1264,8 +1264,8 @@ start_11:	cjne	A, #7d, start_12
 			clr		BIT_GAIN_2K
 			clr		BIT_GAIN_5K
 			clr		BIT_GAIN_10K
-			clr		BIT_GAIN_20K
-			setb	BIT_GAIN_40K
+			clr		BIT_GAIN_25K
+			setb	BIT_GAIN_50K
 			clr		BIT_GAIN_60K
 			mov		R4,	#06h
 			mov		0x1F, R4
@@ -1276,8 +1276,8 @@ start_12:	cjne	A, #8d, start_13
 			clr		BIT_GAIN_2K
 			clr		BIT_GAIN_5K
 			clr		BIT_GAIN_10K
-			clr		BIT_GAIN_20K
-			clr		BIT_GAIN_40K
+			clr		BIT_GAIN_25K
+			clr		BIT_GAIN_50K
 			setb	BIT_GAIN_60K
 			mov		R4,	#07h
 			mov		0x1F, R4
@@ -1460,12 +1460,12 @@ UART_10K_1:	mov		A, 0x7F
 			call	TAB_HEX
 			mov		B, A
 			movx	A, @DPTR
-			cjne	A, B, UART_20K
+			cjne	A, B, UART_25K
 			jmp		UART_10K_3
 UART_10K_2:	call 	UART_10K_4
 			mov		B, A
 			movx	A, @DPTR
-			cjne	A, B, UART_20K
+			cjne	A, B, UART_25K
 UART_10K_3:	inc		DPTR
 			inc		0x7F
 			mov		A, 0x7F
@@ -1492,26 +1492,26 @@ UART_10K_4:	movc	A,@A+PC
 			ret
 
 
-UART_20K:	mov		0x7F, #1d
+UART_25K:	mov		0x7F, #1d
 			mov		DPTR, #0000h
-UART_20K_1:	mov		A, 0x7F
-			cjne	A, #4d, UART_20K_2
+UART_25K_1:	mov		A, 0x7F
+			cjne	A, #4d, UART_25K_2
 			mov		A, 0x4B
 			call	TAB_HEX
 			mov		B, A
 			movx	A, @DPTR
-			cjne	A, B, UART_40K
-			jmp		UART_20K_3
-UART_20K_2:	call 	UART_20K_4
+			cjne	A, B, UART_50K
+			jmp		UART_25K_3
+UART_25K_2:	call 	UART_25K_4
 			mov		B, A
 			movx	A, @DPTR
-			cjne	A, B, UART_40K
-UART_20K_3:	inc		DPTR
+			cjne	A, B, UART_50K
+UART_25K_3:	inc		DPTR
 			inc		0x7F
 			mov		A, 0x7F
-			cjne	A, #17d,UART_20K_1
-			ljmp	set_Gain20K
-UART_20K_4:	movc	A,@A+PC
+			cjne	A, #17d,UART_25K_1
+			ljmp	set_Gain25K
+UART_25K_4:	movc	A,@A+PC
 			ret
 			DB		44h
 			DB		56h
@@ -1532,26 +1532,26 @@ UART_20K_4:	movc	A,@A+PC
 			ret
 
 
-UART_40K:	mov		0x7F, #1d
+UART_50K:	mov		0x7F, #1d
 			mov		DPTR, #0000h
-UART_40K_1:	mov		A, 0x7F
-			cjne	A, #4d, UART_40K_2
+UART_50K_1:	mov		A, 0x7F
+			cjne	A, #4d, UART_50K_2
 			mov		A, 0x4B
 			call	TAB_HEX
 			mov		B, A
 			movx	A, @DPTR
 			cjne	A, B, Voltage
-			jmp		UART_40K_3
-UART_40K_2:	call 	UART_40K_4
+			jmp		UART_50K_3
+UART_50K_2:	call 	UART_50K_4
 			mov		B, A
 			movx	A, @DPTR
 			cjne	A, B, Voltage
-UART_40K_3:	inc		DPTR
+UART_50K_3:	inc		DPTR
 			inc		0x7F
 			mov		A, 0x7F
-			cjne	A, #17d,UART_40K_1
+			cjne	A, #17d,UART_50K_1
 			ljmp	set_Gain50K
-UART_40K_4:	movc	A,@A+PC
+UART_50K_4:	movc	A,@A+PC
 			ret
 			DB		44h
 			DB		56h
@@ -3277,9 +3277,9 @@ betrieb14:	cjne	R4, #3d, betrieb15
 betrieb15:	cjne	R4, #4d, betrieb16
 			ljmp	GAIN10K
 betrieb16:	cjne	R4, #5d, betrieb17
-			ljmp	GAIN20K
+			ljmp	GAIN25K
 betrieb17:	cjne	R4, #6d, betrieb18
-			ljmp	GAIN40K
+			ljmp	GAIN50K
 betrieb18:	cjne	R4, #7d, betrieb20
 			ljmp	GAIN60K
 
@@ -4042,8 +4042,9 @@ TAB_GAIN2K:	movc	A,@A+PC
 			DB		20h
 			DB		20h
 			DB		32h
+			DB		2Eh
+			DB		35h
 			DB		6Bh
-			DB		20h
 			DB		20h
 			DB		20h
 			DB		20h
@@ -4112,12 +4113,12 @@ TAB_GAIN10K:movc	A,@A+PC
 			DB		20h
 			RET
 
-GAIN20K:	inc		R3
+GAIN25K:	inc		R3
 			mov		A, R3
-			call	TAB_GAIN20K
+			call	TAB_GAIN25K
 			mov		R0, A
 			ljmp	DISPLAY
-TAB_GAIN20K:movc	A,@A+PC
+TAB_GAIN25K:movc	A,@A+PC
 			ret
 			DB		20h
 			DB		20h
@@ -4130,7 +4131,7 @@ TAB_GAIN20K:movc	A,@A+PC
 			DB		20h
 			DB		20h
 			DB		32h
-			DB		30h
+			DB		35h
 			DB		6Bh
 			DB		20h
 			DB		20h
@@ -4141,12 +4142,12 @@ TAB_GAIN20K:movc	A,@A+PC
 			DB		20h
 			RET
 
-GAIN40K:	inc		R3
+GAIN50K:	inc		R3
 			mov		A, R3
-			call	TAB_GAIN40K
+			call	TAB_GAIN50K
 			mov		R0, A
 			ljmp	DISPLAY
-TAB_GAIN40K:movc	A,@A+PC
+TAB_GAIN50K:movc	A,@A+PC
 			ret
 			DB		20h
 			DB		20h
@@ -4158,7 +4159,7 @@ TAB_GAIN40K:movc	A,@A+PC
 			DB		20h
 			DB		20h
 			DB		20h
-			DB		34h
+			DB		35h
 			DB		30h
 			DB		6Bh
 			DB		20h
@@ -4213,7 +4214,7 @@ set_Gain_4:	cjne	R4, #3d, set_Gain_5
 set_Gain_5:	cjne	R4, #4d, set_Gain_6
 			jmp		set_Gain10K
 set_Gain_6:	cjne	R4, #5d, set_Gain_7
-			jmp		set_Gain20K
+			jmp		set_Gain25K
 set_Gain_7:	cjne	R4, #6d, set_Gain_8
 			jmp		set_Gain50K
 set_Gain_8:	cjne	R4, #7d, set_Gain_9
@@ -4291,7 +4292,7 @@ set_Gain10K: clr    CS_PDA
 			mov		0x1F, #4d
 			ljmp	Gain_ende
 
-set_Gain20K: clr    CS_PDA
+set_Gain25K: clr    CS_PDA
              MOV    A, #0x05
              MOV    SPI0DAT, A
 
@@ -4524,56 +4525,56 @@ Zero_slow10:mov		0x78, #00h
 			mov		0x7A, #00h
 
 
-    MOV A,0x6F
-    ADD A,0x71
-    MOV 0x7A,A
+            MOV A,0x6F
+            ADD A,0x71
+            MOV 0x7A,A
 
-    MOV A,0x6E
-    ADDC A,0x70
-    MOV 0x79,A
+            MOV A,0x6E
+            ADDC A,0x70
+            MOV 0x79,A
 
-    MOV A,#00h
-    ADDC A,#00h
-    MOV 0x78,A
-
-
-    MOV A,0x7A
-    ADD A,0x73
-    MOV 0x7A,A
-
-    MOV A,0x79
-    ADDC A,0x72
-    MOV 0x79,A
-
-    MOV A,#00h
-    ADDC A, 0x78
-    MOV 0x78,A
+            MOV A,#00h
+            ADDC A,#00h
+            MOV 0x78,A
 
 
-    MOV A,0x7A
-    ADD A,0x75
-    MOV 0x7A,A
+            MOV A,0x7A
+            ADD A,0x73
+            MOV 0x7A,A
 
-    MOV A,0x79
-    ADDC A,0x74
-    MOV 0x79,A
+            MOV A,0x79
+            ADDC A,0x72
+            MOV 0x79,A
 
-    MOV A,#00h
-    ADDC A, 0x78
-    MOV 0x78,A
+            MOV A,#00h
+            ADDC A, 0x78
+            MOV 0x78,A
 
 
-    MOV A,0x7A
-    ADD A,0x77
-    MOV 0x7A,A
+            MOV A,0x7A
+            ADD A,0x75
+            MOV 0x7A,A
 
-    MOV A,0x79
-    ADDC A,0x76
-    MOV 0x79,A
+            MOV A,0x79
+            ADDC A,0x74
+            MOV 0x79,A
 
-    MOV A,#00h
-    ADDC A, 0x78
-    MOV 0x78,A
+            MOV A,#00h
+            ADDC A, 0x78
+            MOV 0x78,A
+
+
+            MOV A,0x7A
+            ADD A,0x77
+            MOV 0x7A,A
+
+            MOV A,0x79
+            ADDC A,0x76
+            MOV 0x79,A
+
+            MOV A,#00h
+            ADDC A, 0x78
+            MOV 0x78,A
 
 
     		mov		A, 0x78
@@ -5798,10 +5799,10 @@ KALIBRIER33:jb		BIT_GAIN_5K, KALIBRIER34
 			ljmp	KALIB_5k_0
 KALIBRIER34:jb		BIT_GAIN_10K, KALIBRIER35
 			ljmp	KALIB_10k_0
-KALIBRIER35:jb		BIT_GAIN_20K, KALIBRIER36
-			ljmp	KALIB_20k_0
-KALIBRIER36:jb		BIT_GAIN_40K, KALIBRIER37
-			ljmp	KALIB_40k_0
+KALIBRIER35:jb		BIT_GAIN_25K, KALIBRIER36
+			ljmp	KALIB_25K_0
+KALIBRIER36:jb		BIT_GAIN_50K, KALIBRIER37
+			ljmp	KALIB_50K_0
 KALIBRIER37:jb		BIT_GAIN_60K, KALIBRIER37_1
 			ljmp	KALIB_60k_0
 KALIBRIER37_1:	jb		KALIB_end, KALIBRIER38
@@ -6073,11 +6074,11 @@ KALIB_10k_4:mov		0x5A,R1
 			mov		0x3A, #00h
 			mov		0x3B, #00h
 KALIB_10k_5:setb	BIT_GAIN_10K
-			jmp		KALIB_20k_0
+			jmp		KALIB_25K_0
 KALIB_10k_6:ljmp	KALIBRIER39
 
 
-KALIB_20k_0:setb	E
+KALIB_25K_0:setb	E
 			setb 	S1
 			clr		S2
 			;setb	S3
@@ -6086,10 +6087,10 @@ KALIB_20k_0:setb	E
 			mov		TL0, #00h
 			clr		TCON_TF0
 			jnb		TCON_TF0, $
-			djnz	0x6A, KALIB_20k_1
-			jmp		KALIB_20k_2
-KALIB_20k_1:ljmp	KALIB_20k_6
-KALIB_20k_2:mov		0x6A, #0DDh
+			djnz	0x6A, KALIB_25K_1
+			jmp		KALIB_25K_2
+KALIB_25K_1:ljmp	KALIB_25K_6
+KALIB_25K_2:mov		0x6A, #0DDh
 			mov		0x1B, R1
 			mov		0x1C, R2
 			mov		R1, #00h
@@ -6102,9 +6103,9 @@ KALIB_20k_2:mov		0x6A, #0DDh
   			div		AB
   			mov		R1, A
   			mov		A, B
-  			cjne	A, #1d, KALIB_20k_3
+  			cjne	A, #1d, KALIB_25K_3
 			mov		0x49, #80h
-KALIB_20k_3:clr		C
+KALIB_25K_3:clr		C
 			mov		A, 0x1C
 			mov		B, #2d
   			div		AB
@@ -6114,22 +6115,22 @@ KALIB_20k_3:clr		C
 			clr		A
 			addc	A, R1
 			mov		R1, A
-			jnb		OUTPUT_POSITIV, KALIB_20k_4
+			jnb		OUTPUT_POSITIV, KALIB_25K_4
 			mov		0x3C,R1
 			mov		0x3D,R2
 			mov		0x5C, #00h
 			mov		0x5D, #00h
-			jmp		KALIB_20k_5
-KALIB_20k_4:mov		0x5C,R1
+			jmp		KALIB_25K_5
+KALIB_25K_4:mov		0x5C,R1
 			mov		0x5D,R2
 			mov		0x3C, #00h
 			mov		0x3D, #00h
-KALIB_20k_5:setb	BIT_GAIN_20K
-			jmp		KALIB_40k_0
-KALIB_20k_6:ljmp	KALIBRIER39
+KALIB_25K_5:setb	BIT_GAIN_25K
+			jmp		KALIB_50K_0
+KALIB_25K_6:ljmp	KALIBRIER39
 
 
-KALIB_40k_0:setb	E
+KALIB_50K_0:setb	E
 			clr 	S1
 			setb	S2
 			;setb	S3
@@ -6138,10 +6139,10 @@ KALIB_40k_0:setb	E
 			mov		TL0, #00h
 			clr		TCON_TF0
 			jnb		TCON_TF0, $
-			djnz	0x6A, KALIB_40k_1
-			jmp		KALIB_40k_2
-KALIB_40k_1:ljmp	KALIB_40k_6
-KALIB_40k_2:mov		0x6A, #0DDh
+			djnz	0x6A, KALIB_50K_1
+			jmp		KALIB_50K_2
+KALIB_50K_1:ljmp	KALIB_50K_6
+KALIB_50K_2:mov		0x6A, #0DDh
 			mov		0x1B, R1
 			mov		0x1C, R2
 			mov		R1, #00h
@@ -6154,9 +6155,9 @@ KALIB_40k_2:mov		0x6A, #0DDh
   			div		AB
   			mov		R1, A
   			mov		A, B
-  			cjne	A, #1d, KALIB_40k_3
+  			cjne	A, #1d, KALIB_50K_3
 			mov		0x49, #80h
-KALIB_40k_3:clr		C
+KALIB_50K_3:clr		C
 			mov		A, 0x1C
 			mov		B, #2d
   			div		AB
@@ -6166,19 +6167,19 @@ KALIB_40k_3:clr		C
 			clr		A
 			addc	A, R1
 			mov		R1, A
-			jnb		OUTPUT_POSITIV, KALIB_40k_4
+			jnb		OUTPUT_POSITIV, KALIB_50K_4
 			mov		0x3E,R1
 			mov		0x3F,R2
 			mov		0x5E, #00h
 			mov		0x5F, #00h
-			jmp		KALIB_40k_5
-KALIB_40k_4:mov		0x5E,R1
+			jmp		KALIB_50K_5
+KALIB_50K_4:mov		0x5E,R1
 			mov		0x5F,R2
 			mov		0x3E, #00h
 			mov		0x3F, #00h
-KALIB_40k_5:setb	BIT_GAIN_40K
+KALIB_50K_5:setb	BIT_GAIN_50K
 			jmp		KALIB_60k_0
-KALIB_40k_6:ljmp	KALIBRIER39
+KALIB_50K_6:ljmp	KALIBRIER39
 
 
 KALIB_60k_0:setb	E
@@ -6293,20 +6294,20 @@ KALIBRIER80:cjne	R3, #70d, KALIBRIER85
 
 
 KALIBRIER85:cjne	R3, #71d, KALIBRIER90
-			jnb		BIT_GAIN_20K, KALIBRIER90
+			jnb		BIT_GAIN_25K, KALIBRIER90
 			mov		R0, #2Ah
 			ljmp	DISPLAY
 KALIBRIER90:cjne	R3, #72d, KALIBRIER95
-			jnb		BIT_GAIN_20K, KALIBRIER95
+			jnb		BIT_GAIN_25K, KALIBRIER95
 			mov		R0, #2Ah
 			ljmp	DISPLAY
 
 KALIBRIER95:cjne	R3, #73d, KALIBRIER100
-			jnb		BIT_GAIN_40K, KALIBRIER100
+			jnb		BIT_GAIN_50K, KALIBRIER100
 			mov		R0, #2Ah
 			ljmp	DISPLAY
 KALIBRIER100:cjne	R3, #74d, KALIBRIER105
-			jnb		BIT_GAIN_40K, KALIBRIER105
+			jnb		BIT_GAIN_50K, KALIBRIER105
 			mov		R0, #2Ah
 			ljmp	DISPLAY
 
