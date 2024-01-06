@@ -4236,13 +4236,13 @@ set_Gain500: clr    CS_PDA
 			ljmp	Gain_ende
 
 set_Gain1K:	 clr    CS_PDA
-             MOV    A, #0x01
-             MOV    SPI0DAT, A
+
+             MOV    SPI0DAT,#0d
 
              JB     SPI0CN0_SPIF, $
              CLR    SPI0CN0_SPIF
-             MOV    A, #0x00
-             MOV    SPI0DAT, A
+
+             MOV    SPI0DAT,#0x01
              JB     SPI0CN0_SPIF, $
              CLR    SPI0CN0_SPIF
              setb   CS_PDA
@@ -4251,27 +4251,25 @@ set_Gain1K:	 clr    CS_PDA
 
 
 set_Gain2K:clr    CS_PDA
-             MOV    A, #0x02
-             MOV    SPI0DAT, A
+
+             MOV    SPI0DAT,#0d
 
              JB     SPI0CN0_SPIF, $
              CLR    SPI0CN0_SPIF
-             MOV    A, #0x00
-             MOV    SPI0DAT, A
+
+             MOV    SPI0DAT, #0x02
              JB     SPI0CN0_SPIF, $
              CLR    SPI0CN0_SPIF
              setb   CS_PDA
-			mov		0x1F, #2d
+			 mov	0x1F, #2d
 			ljmp	Gain_ende
 
 set_Gain5K:	 clr    CS_PDA
-             MOV    A, #0x03
-             MOV    SPI0DAT, A
+             MOV    SPI0DAT,#0x00
 
              JB     SPI0CN0_SPIF, $
              CLR    SPI0CN0_SPIF
-             MOV    A, #0x00
-             MOV    SPI0DAT, A
+             MOV    SPI0DAT,#0x03
              JB     SPI0CN0_SPIF, $
              CLR    SPI0CN0_SPIF
              setb   CS_PDA
@@ -4279,13 +4277,13 @@ set_Gain5K:	 clr    CS_PDA
 			 ljmp	Gain_ende
 
 set_Gain10K: clr    CS_PDA
-             MOV    A, #0x04
-             MOV    SPI0DAT, A
+
+             MOV    SPI0DAT,#0d
 
              JB     SPI0CN0_SPIF, $
              CLR    SPI0CN0_SPIF
-             MOV    A, #0x00
-             MOV    SPI0DAT, A
+
+             MOV    SPI0DAT,#0x04
              JB     SPI0CN0_SPIF, $
              CLR    SPI0CN0_SPIF
              setb   CS_PDA
@@ -4293,13 +4291,12 @@ set_Gain10K: clr    CS_PDA
 			ljmp	Gain_ende
 
 set_Gain25K: clr    CS_PDA
-             MOV    A, #0x05
-             MOV    SPI0DAT, A
+
+             MOV    SPI0DAT,#0d
 
              JB     SPI0CN0_SPIF, $
              CLR    SPI0CN0_SPIF
-             MOV    A, #0x00
-             MOV    SPI0DAT, A
+             MOV    SPI0DAT,#0x05
              JB     SPI0CN0_SPIF, $
              CLR    SPI0CN0_SPIF
              setb   CS_PDA
@@ -4307,13 +4304,11 @@ set_Gain25K: clr    CS_PDA
 			ljmp	Gain_ende
 
 set_Gain50K: clr    CS_PDA
-             MOV    A, #0x06
-             MOV    SPI0DAT, A
 
+             MOV    SPI0DAT,#0x00
              JB     SPI0CN0_SPIF, $
              CLR    SPI0CN0_SPIF
-             MOV    A, #0x00
-             MOV    SPI0DAT, A
+             MOV    SPI0DAT,#0x06
              JB     SPI0CN0_SPIF, $
              CLR    SPI0CN0_SPIF
              setb   CS_PDA
