@@ -1006,7 +1006,7 @@ start1:		clr 		TCON_TF0
 			setb	RST_DISPLAY
 
 			jb		AUTOZ_IN, start_01
-			setb	KALIBRIEREN
+			;setb	KALIBRIEREN
 			clr		KALIB_end
 			ljmp	main50
 
